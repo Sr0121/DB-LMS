@@ -1,0 +1,69 @@
+<form action="/qu" method="POST">
+    书号</br>
+    <input type="text" name="bno"><input type="checkbox" name="fuzzy_bno" value=1 >模糊查找
+    </br>
+    类型</br>
+    <input type="text" name="type"><input type="checkbox" name="fuzzy_type" value=1 >模糊查找
+    <br>
+    书名</br>
+    <input type="text" name="name"><input type="checkbox" name="fuzzy_name" value=1 >模糊查找
+    </br>
+    出版社</br>
+    <input type="text" name="press"><input type="checkbox" name="fuzzy_press" value=1 >模糊查找
+    </br>
+    出版日期</br>
+    <input type="date" name="year">
+    </br>
+    作者名</br>
+    <input type="text" name="author"><input type="checkbox" name="fuzzy_author" value=1 >模糊查找
+    </br>
+
+    价格</br>
+    <select name="price_judge1">
+    <option value=1 >大于</option>
+    <option value=0 >等于</option>
+    <option value=-1 >小于</option>
+    </select>
+    <input type="text" name="price1" style="width:80px;height:20px"></br>
+
+    <select name="price_judge2">
+    <option value=0 >--</option>
+    <option value=1 >大于</option>
+    <option value=-1 >小于</option>
+    </select>
+    <input type="text" name="price2" style="width:80px;height:20px">
+    </br>
+
+    总量</br>
+    <select name="total_judge1">
+    <option value=1 >大于</option>
+    <option value=0 >等于</option>
+    <option value=-1 >小于</option>
+    </select>
+    <input type="text" name="total1" style="width:80px;height:20px"></br>
+
+    <select name="total_judge2">
+    <option value=0 >--</option>
+    <option value=1 >大于</option>
+    <option value=-1 >小于</option>
+    </select>
+    <input type="text" name="total2" style="width:80px;height:20px">
+    </br>
+
+    库存</br>
+    <select name="stock_judge1">
+    <option value=1 >大于</option>
+    <option value=0 >等于</option>
+    <option value=-1 >小于</option>
+    </select>
+    <input type="text" name="stock1" style="width:80px;height:20px"></br>
+
+    <select name="stock_judge2">
+    <option value=0 >--</option>
+    <option value=1 >大于</option>
+    <option value=-1 >小于</option>
+    </select>
+    <input type="text" name="stock2" style="width:80px;height:20px">
+    </br>
+    <input type="submit" value="submit">
+    </form>

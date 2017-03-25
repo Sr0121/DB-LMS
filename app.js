@@ -1,14 +1,14 @@
 var Koa = require('koa');
-
-var app = new Koa();
-
-app.use(async (ctx , next) => {
-    console.log("the path is " , ctx.request.path);
-    ctx.response.type = 'text/html';
-    ctx.response.body = '<h1>Hello world!</h1>';
-});
-
-app.listen(8080);
+var router = require('koa-router')();
+var body_parser = require('koa-bodyparser');
+var app  = new Koa();
 
 console.log("The server is running!");
 
+var add_controllers = require('./add.js');
+add_controllers(router);
+
+app.use(body_parser());
+app.use(router.routes());
+
+app.listen(8080);
