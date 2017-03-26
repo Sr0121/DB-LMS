@@ -12,6 +12,7 @@ var query_data = async (ctx , next) => {
     var total2 = ctx.request.body.total2 || "";
     var stock1 = ctx.request.body.stock1 || "";
     var stock2 = ctx.request.body.stock2 || "";
+    var order = ctx.request.body.order;
 
 
     if(ctx.request.body.fuzzy_bno==1)
@@ -66,7 +67,7 @@ var query_data = async (ctx , next) => {
 
     console.log(year);
 
-    var  addSql = 'select * from book where bno like ? '+price1+stock1+total1+' and type like ? and title like ? and press like ? and year like ? and author like ? order by title limit 50';
+    var  addSql = 'select * from book where bno like ? '+price1+stock1+total1+' and type like ? and title like ? and press like ? and year like ? and author like ? order by '+order+' limit 50';
     var  addSqlParams = [bno, type,title,press,year,author];
 
     var rows = await connection.query(addSql , addSqlParams);
