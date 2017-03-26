@@ -14,7 +14,7 @@
     出版日期</br>
     <input type="date" name="year">
     </br>
-    作者名</br>
+    作者</br>
     <input type="text" name="author"><input type="checkbox" name="fuzzy_author" value=1 >模糊查找
     </br>
 
@@ -65,5 +65,23 @@
     </select>
     <input type="text" name="stock2" style="width:80px;height:20px">
     </br>
+
+    排序规则</br>
+    <select name="order">
+    <option value="title" >书名</option>
+    <option value="bno" >书号</option>
+    <option value="type" >类型</option>
+    <option value="press" >出版社</option>
+    <option value="year" >出版日期</option>
+    <option value="author" >作者</option>
+    <option value="price" >价格</option>
+    <option value="total" >总量</option>
+    <option value="stock" >库存</option>
+    </select>
+    </br>
+    </br>
     <input type="submit" value="submit">
     </form>
+
+
+
