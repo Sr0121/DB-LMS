@@ -4,7 +4,7 @@ function login(){
     var pool = mysql.createPool({
         host : 'localhost',
         user : 'root',
-        password : '',
+        password : '123456',
         database : 'library'
     });
     var p = wrapper(pool);
