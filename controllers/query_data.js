@@ -2,7 +2,7 @@ var query_data = async (ctx , next) => {
     var connection = require('./login.js')();
     var bno = ctx.request.body.bno || "%";
     var type = ctx.request.body.type || "%";
-    var name = ctx.request.body.name || "%";
+    var title = ctx.request.body.title || "%";
     var press = ctx.request.body.press || "%";
     var year = ctx.request.body.year || "%";
     var author = ctx.request.body.author || "%";
@@ -13,12 +13,13 @@ var query_data = async (ctx , next) => {
     var stock1 = ctx.request.body.stock1 || "";
     var stock2 = ctx.request.body.stock2 || "";
 
+
     if(ctx.request.body.fuzzy_bno==1)
         bno='%'+bno+'%';
     if(ctx.request.body.fuzzy_type==1)
         type='%'+tyoe+'%';
-    if(ctx.request.body.fuzzy_name==1)
-        name='%'+name+'%';
+    if(ctx.request.body.fuzzy_title==1)
+        title='%'+title+'%';
     if(ctx.request.body.fuzzy_press==1)
         press='%'+press+'%';
     if(ctx.request.body.fuzzy_author==1)
@@ -63,16 +64,37 @@ var query_data = async (ctx , next) => {
         stock1=stock1+' and stock < '+stock2;
     }
 
-    
+    console.log(year);
 
-    var  addSql = 'select * from book where bno like ? '+price1+stock1+total1+' and type like ? and name like ? and press like ? and year like ? and author like ?';
-    var  addSqlParams = [bno, type,name,press,year,author];
+    var  addSql = 'select * from book where bno like ? '+price1+stock1+total1+' and type like ? and title like ? and press like ? and year like ? and author like ? order by title limit 50';
+    var  addSqlParams = [bno, type,title,press,year,author];
 
     var rows = await connection.query(addSql , addSqlParams);
-    console.log(rows);
+    var map = new Map();
+    map['bno'] = [];
+    map['type'] = [];
+    map['title'] = [];
+    map['press'] = [];
+    map['year'] = [];
+    map['author'] = [];
+    map['price'] = [];
+    map['total'] = [];
+    map['stock'] = [];
+    map["error"] = "";
+    var flag = 0;
+    for (var row of rows){
+        for (var key in row){
+            map[key].push(row[key]);
+            flag = 1;
+        }
+    }
+    if(flag == 0){
+        map["error"] = "不存在！";
+    }
+
     ctx.response.status = 200;
     ctx.response.type = 'application/json';
-    ctx.response.body = JSON.stringify(rows);
+    ctx.response.body = JSON.stringify(map);
     await next();
 }
 
